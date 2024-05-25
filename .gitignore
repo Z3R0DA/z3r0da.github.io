@@ -3,6 +3,8 @@
 vendor
 Gemfile.lock
 
+.DS_Store
+
 # Jekyll cache
 .jekyll-cache
 .jekyll-metadata
