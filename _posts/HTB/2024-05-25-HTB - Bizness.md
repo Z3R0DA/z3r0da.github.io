@@ -1,6 +1,6 @@
 ---
 title: HTB - Bizness
-date: 2024-05-26 00:00:00 - 0500
+date: 2024-05-26 00:00:00 + 1000
 categories: [CTF,HTB]
 tags: [cve-2023-51467, apache ofbiz, htb]
 comments: false
@@ -52,7 +52,7 @@ Nmap done: 1 IP address (1 host up) scanned in 25.47 seconds
 
 ```
 
-Both port 80 and 443 redirect to `https://bizness.htb`. Which I have added to the `/etc/hosts`
+Both port `80` and `443` redirect to `https://bizness.htb`. Which I have added to the `/etc/hosts`
 ### Browsing Website
 
 The website is about delivering business solutions

@@ -16,10 +16,10 @@ timezone: Australia/Sydney
 
 title: Z3R0DA$ # the main title
 
-tagline: CTF write-ups and other stuff # it will display as the sub-title
+tagline: CTF write-ups and other stuff
 
 description: >- # used by seo meta and the atom feed
-  CTF write-ups and other stuff.
+  CTF write-ups and other stuff
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
