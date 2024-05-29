@@ -1,8 +1,8 @@
 ---
 title: HTB - Bizness
 date: 2024-05-26 00:00:00 + 1000
-categories: [CTF,HTB]
-tags: [cve-2023-51467, apache ofbiz, htb]
+categories: [CTF,HTB, Web App]
+tags: [cve-2023-51467, apache ofbiz, htb, RCE]
 comments: false
 ---
 Bizness is easy rated box, I got the initial access to this machine by exploiting the Apache OFBiz Authentication Bypass vulnerability (CVE-2023-51467). Once I got the shell, I did doing some reconnaissance, I found the `derby` database. Then I extract the hash and crack the password, login as to root.
