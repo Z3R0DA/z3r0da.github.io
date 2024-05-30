@@ -6,7 +6,7 @@ tags: [cve-2023-40931,SQL Injection,htb,RCE]
 comments: false
 ---
 
-Monitored is Hack The Box medium-rated machine. I've put together a walkthrough based on notes I took back in January while it might not be perfect, I hope they're still useful.
+Monitored is Hack The Box medium-rated machine. Sharing a walkthrough based on notes I took back in January, while it might not be perfect but I hope they're still useful.
 
 ## Common Enumeration
 
