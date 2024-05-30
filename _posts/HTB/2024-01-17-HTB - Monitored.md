@@ -157,7 +157,7 @@ iso.3.6.1.2.1.25.4.2.1.5.2823 = ""
 ...snip....
 ```
 
-But, using these credential to log in at `/nagiosxi/login.php` displayed in an error: "The specified user account has been disabled or does not exist."
+Using these credential to log in at `/nagiosxi/login.php` displayed in an error: "The specified user account has been disabled or does not exist."
 
 ![img](/assets/img/Monitored/img4.webp)
 
