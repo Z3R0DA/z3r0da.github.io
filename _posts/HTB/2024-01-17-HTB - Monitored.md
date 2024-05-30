@@ -2,9 +2,11 @@
 title: HTB - Monitored
 date: 2024-01-17 00:00:00 + 1000
 categories: [CTF,HTB,Web App]
-tags: [cve-2023-40931,SQL Injection,htb,RCE,misconfiguration]
+tags: [cve-2023-40931,SQL Injection,htb,RCE]
 comments: false
 ---
+
+Monitored is Hack The Box medium-rated machine. I've put together a walkthrough based on notes I took back in January while it might not be perfect, I hope they're still useful.
 
 ## Common Enumeration
 
