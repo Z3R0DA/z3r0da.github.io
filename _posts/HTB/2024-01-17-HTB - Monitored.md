@@ -1,6 +1,6 @@
 ---
 title: HTB - Monitored
-date: 2024-01-17 00:00:00 + 1000
+date: 2024-05-11 00:00:00 + 1000
 categories: [CTF,HTB,Web App]
 tags: [cve-2023-40931,SQL Injection,htb,RCE]
 comments: false
