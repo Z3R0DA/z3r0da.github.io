@@ -1,6 +1,6 @@
 ---
 title: HTB - Office
-date: 2024-06-23 00:00:00 + 1000
+date: 2024-06-23 01:00:00 + 1000
 categories: [CTF,HTB,Windows,Active Directory,LibreOffice] 
 tags: [ctf,htb,cve-2023-2255,dpapi,mimikatz,winpeas, chisel, bloodhound,sharpgpoabuse]
 comments: false
