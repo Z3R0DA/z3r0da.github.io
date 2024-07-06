@@ -6,8 +6,7 @@ tags: [htb,WebExploitation, SSTI, SQLite]
 comments: false
 ---
 
-
-The Perfection HTB easy rated-machine which involved exploiting a Server-Side Template Injection (SSTI) vulnerability in a web app to gain initial access as the "susan" user. This user's credentials were then cracked using Hashcat to gain root privileges via `sudo`
+The Perfection HTB easy rated-machine which involved exploiting a Server-Side Template Injection (SSTI) vulnerability in a web app to gain initial access as the "susan" user. Credentials were then cracked using Hashcat to gain root privileges via `sudo`
 
 ## Common Enumeration
 ### Namp
@@ -63,7 +62,7 @@ Finished
 
 ### Web Reconnaissance
 
-I pointed my browser at `http://10.10.11.253/` and saw a simple home page but then I noticed `/weighted-grade-calc`, a path that looked like a juicy target
+Browsing to the `http://10.10.11.253/` brings up a simple home page but then I noticed `/weighted-grade-calc`, a path that looked like a juicy target
 
 ![img](/assets/img/Perfection/1.webp)
 
@@ -146,7 +145,7 @@ sqlite> select * from users;
 sqlite> 
 ```
 
-So I've uploaded uploaded and fired up `linpeas` and it spat out a juicy nugget: `/var/mail/susan`
+So I've uploaded and fired up `linpeas` and it spat out a juicy nugget: `/var/mail/susan`
 
 ```bash
 bash-5.1$ pwd
@@ -166,7 +165,7 @@ Please hit me with updates on the migration when you can. I am currently registe
 bash-5.1$ 
 ```
 
-Alright, so I've got this password pattern: "{firstname}_{firstname backwards}_{randomly generated integer between 1 and 1,000,000,000}". It's a classic password pattern, easy for the user but ripe for cracking
+Alright, So I've got this password pattern: "{firstname}_{firstname backwards}_{randomly generated integer between 1 and 1,000,000,000}". Classic password pattern, easy for the user but ripe for cracking
 
 ```bash
 $ hashcat -m 1400 hash -a 3 -d 1 susan_nasus_?d?d?d?d?d?d?d?d?d --show
@@ -189,7 +188,7 @@ User susan may run the following commands on perfection:
 
 ### ### Sudo to su
 
-I used `sudo su` and I was in!
+I used `sudo su` and I am in!
 
 ```bash
 -bash-5.1$ sudo su
