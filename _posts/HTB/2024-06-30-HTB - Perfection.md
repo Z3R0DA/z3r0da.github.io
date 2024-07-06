@@ -111,8 +111,8 @@ export TERM=xterm
 
 user.txt
 
-```test
-b6958b4ef355e9f03c9594a65dafd1be
+```text
+b6958b4e.....
 ```
 
 ### Enumeration for Privilege Escalation
@@ -186,8 +186,6 @@ User susan may run the following commands on perfection:
    (ALL : ALL) ALL
 ```
 
-### ### Sudo to su
-
 I used `sudo su` and I am in!
 
 ```bash
@@ -195,12 +193,12 @@ I used `sudo su` and I am in!
 root@perfection:/home/susan# whoami
 root
 root@perfection:/home/susan# cat /root/root.txt 
-d64491faf42d2eaebe64995eded12a46
+d64491fa.....
 root@perfection:/home/susan# 
 ```
 
 root.txt
 
 ```text
-d64491faf42d2eaebe64995eded12a46
+d64491fa.....
 ```
