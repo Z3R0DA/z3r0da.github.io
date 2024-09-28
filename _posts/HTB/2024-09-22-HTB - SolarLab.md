@@ -1,6 +1,6 @@
 ---
 title: HTB - SolarLab
-date: 2024-09-15 00:00:00 + 1000
+date: 2024-09-22 00:00:00 + 1000
 categories: [Windows,Web App,CTF,HTB]
 tags: [htb, CVE-2023-33733, CVE-2023-32315, Arbitrary Code Execution (ACE), RunasCs, chisel, openfire, smbclient, openfire Administration bypass, RCE]
 comments: false
