@@ -51,13 +51,15 @@ Browsing the `app.blurry.htb` brings up the login page for clearml. An open sour
 ![img](/assets/img/Blurry/1.webp)
 
 Quick Google search, led me to "Deserialisation of Untrusted Data" - [CVE-2024-24590](https://security.snyk.io/vuln/SNYK-PYTHON-CLEARML-6230390) vulnerability
+
 ## Initial Access
 
 Okay, so on the ClearML web interface, there was a project called "Black Swan" that was active
 
 ![img](/assets/img/Blurry/2.webp)
 
-I did some more digging and found a Proof of Concept [PoC](https://github.com/LordVileOnX/ClearML-vulnerability-exploit-RCE-2024-CVE-2024-24590-) on GitHub 
+I did some more digging and found a Proof of Concept [PoC](https://github.com/LordVileOnX/ClearML-vulnerability-exploit-RCE-2024-CVE-2024-24590-) on GitHub
+
 ### Testing PoC
 
 Inside the "Black Swan" project, I saw options to create a "New Experiment" and "Create New Credentials."
@@ -122,6 +124,7 @@ jippity@blurry:~$
 ```
 
 And boom! I got a shell as the user `jippity`
+
 ### Shell as jippity
 
 I upgraded my shell to a more interactive one using Python
