@@ -2,7 +2,7 @@
 title: HTB - GreenHorn
 date: 2024-12-07 00:00:00 + 1000
 categories: [Linux,Web App,CTF,HTB]
-tags: [WebExploitation,LFI,Depix,Pluck CMS]
+tags: [WebExploitation,lfi,Depix,Pluck CMS]
 comments: false
 ---
 
