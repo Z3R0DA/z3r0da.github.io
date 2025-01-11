@@ -217,6 +217,7 @@ export TERM=xterm
 ```
 
 Now, I had a proper interactive shell. But no user.txt here, darn!
+
 ### Shell as junior
 
 So, I decided to try it out for other users with same password `iloveyou1`. It worked! I was now `junior` and I grabbed the user flag
