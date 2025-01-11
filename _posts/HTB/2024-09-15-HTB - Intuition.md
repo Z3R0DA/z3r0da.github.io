@@ -2,7 +2,7 @@
 title: HTB - Intuition
 date: 2024-09-15 00:00:00 + 1000
 categories: [Linux,Web App,CTF,HTB]
-tags: [htb,SSRF, CVE-2023-24329, Ansible, ReverseEngineering, AuthenticationBypass]
+tags: [htb,ssrf, CVE-2023-24329, Ansible, ReverseEngineering, AuthenticationBypass]
 comments: false
 ---
 
