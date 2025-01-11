@@ -8,14 +8,13 @@ comments: false
 
 The Editorial machine was compromised by exploiting a Server-Side Request Forgery (SSRF) vulnerability in the website's upload functionality to find credentials and leverage an old git vulnerability. Initial access was gained via SSH using exposed credentials and escalated to root by exploiting the `gitpython` vulnerability via sudo access
 
-
-## Common Enumeration 
+## Common Enumeration
 
 ### Nmap
 
 I fired up `nmap` for a full port scan: `sudo nmap -p- -sC -sV -oA recon/allports 10.10.11.20 --open`. As always I throw in the `-sC` for default scripts and `-sV` for version detection and it found two open ports
 
-- SSH - `22` 
+- SSH - `22`
 - HTTP - `80`
 
 ```bash
@@ -40,6 +39,7 @@ Nmap done: 1 IP address (1 host up) scanned in 12.20 seconds
 ```
 
 The web server redirected to `http://editorial.htb/`, so I added that to my `/etc/hosts`
+
 ### Directory Brute Forcing and Fuzzing
 
 Just two hits: `/upload` and `/about`. Not a goldmine. Next, I tried `ffuf` to see if there were any subdomains hiding out but sadly, nothing came up
@@ -87,6 +87,7 @@ ________________________________________________
 ```
 
 ## Website - HTTP 80
+
 ### Browsing Website
 
 Browsing the `http://editorial.htb/` beings up the homepage was nothing too special
@@ -238,6 +239,7 @@ $ curl http://editorial.htb/static/uploads/9dc18526-9b01-452f-b796-4ca12fefa3cf 
   "template_mail_message": "Welcome to the team! We are thrilled to have you on board and can't wait to see the incredible content you'll bring to the table.\n\nYour login credentials for our internal forum and authors site are:\nUsername: dev\nPassword: dev080217_devAPI!@\nPlease be sure to change your password as soon as possible for security purposes.\n\nDon't hesitate to reach out if you have any questions or ideas - we're always here to support you.\n\nBest regards, Editorial Tiempo Arriba Team."
 }
 ```
+
 ## Initial Access
 
 I tried the credential, and I was in via SSH! `dev:dev080217_devAPI!@` and got the user flag - `user.txt`
@@ -299,6 +301,7 @@ index 61b786f..3373b14 100644
 ```
 
 ## Privilege Escalation
+
 ### SSH as Prod
 
 I tried to switch to prod with `su prod` and used those credentials and I am now prod
@@ -343,6 +346,7 @@ prod@editorial:/opt/internal_apps/clone_changes$ pip list | grep -i git
 gitdb                 4.0.10
 GitPython             3.1.29
 ```
+
 ## Root
 
 Now, time for the big finale! I use the vulnerability in gitpython and the sudo access to escalate privileges to root. The root flag was in `/dev/shm/root`
