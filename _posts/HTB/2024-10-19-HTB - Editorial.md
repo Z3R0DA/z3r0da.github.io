@@ -2,7 +2,7 @@
 title: HTB - Editorial
 date: 2024-10-19 00:00:00 + 1000
 categories: [Linux,Web App,CTF,HTB]
-tags: [WebExploitation,SSRF, BurpSuite, GitPython]
+tags: [WebExploitation,ssrf, BurpSuite, GitPython]
 comments: false
 ---
 
