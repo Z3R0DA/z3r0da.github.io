@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-gem "jekyll-theme-chirpy", "~> 7.0", ">= 7.0.1"
+gem "jekyll-theme-chirpy", "~> 7.2", ">= 7.2.4"
 gem 'logger'
 gem 'csv'
 gem 'base64'
